@@ -19,14 +19,19 @@ namespace AST.Parsers.Parsers
 
         protected override string ParseInternal(string source, ParserOptions? parserOptions = null)
         {
-            return RunScript("python3", $"{_script} {source}").Trim();
-            // ScriptEngine engine = Python.CreateEngine();
-            // ScriptSource src = engine.CreateScriptSourceFromString(source);
-            // SourceUnit sourceUnit = HostingHelpers.GetSourceUnit(src);
-            // LanguageContext langContext = HostingHelpers.GetLanguageContext(engine);
-            // CompilerContext compilerCtxt = new CompilerContext(sourceUnit, langContext.GetCompilerOptions(), ErrorSink.Default);
-            // PyParser parser = PyParser.CreateParser(compilerCtxt, (IronPython.PythonOptions)langContext.Options);
-            // return parser.ParseFile(false);
+            return RunScript("python3", $"{_script} \"{source}\"").Trim();
+        }
+
+        // TODO: Add as fallback
+        private PyAst ParserInternalSharp(string source, ParserOptions? parserOptions = null)
+        {
+            ScriptEngine engine = Python.CreateEngine();
+            ScriptSource src = engine.CreateScriptSourceFromString(source);
+            SourceUnit sourceUnit = HostingHelpers.GetSourceUnit(src);
+            LanguageContext langContext = HostingHelpers.GetLanguageContext(engine);
+            CompilerContext compilerCtxt = new CompilerContext(sourceUnit, langContext.GetCompilerOptions(), ErrorSink.Default);
+            PyParser parser = PyParser.CreateParser(compilerCtxt, (IronPython.PythonOptions)langContext.Options);
+            return parser.ParseFile(false);
         }
     }
 }
