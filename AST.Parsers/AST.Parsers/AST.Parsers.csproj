@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Microsoft.CodeAnalysis.CSharp" />
+    <None Remove="Models\" />
+    <None Remove="JavaToCSharp" />
+    <None Remove="Microsoft.SqlServer.Management.SqlParser" />
+    <None Remove="Parsers\" />
+    <None Remove="Microsoft.CodeAnalysis.VisualBasic" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Peachpie.Library" />
+    <None Remove="Peachpie.CodeAnalysis" />
+    <None Remove="Peachpie.Microsoft.CodeAnalysis" />
+    <None Remove="IronPython" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
+    <PackageReference Include="JavaToCSharp" Version="2.1.0" />
+    <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="160.22506.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Peachpie.CodeAnalysis" Version="1.0.23" />
+    <PackageReference Include="Peachpie.Microsoft.CodeAnalysis" Version="3.7.1" />
+    <PackageReference Include="IronPython" Version="2.7.12" />
+  </ItemGroup>
+
+   <Target Name="AddCustomAliases" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'Peachpie.Microsoft.CodeAnalysis'">
+        <Aliases>PeachPieCodeAnalysis</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
+
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Parsers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="native\python\parse.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

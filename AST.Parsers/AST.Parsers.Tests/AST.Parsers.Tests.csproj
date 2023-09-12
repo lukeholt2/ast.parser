@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
+    <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="160.22506.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Microsoft.CodeAnalysis.CSharp" />
+    <None Remove="Microsoft.SqlServer.Management.SqlParser" />
+    <None Remove="Microsoft.CodeAnalysis.VisualBasic" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AST.Parsers\AST.Parsers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestData\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>  
+  </ItemGroup>
+  
+</Project>
