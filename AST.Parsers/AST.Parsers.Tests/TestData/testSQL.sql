@@ -1,0 +1,1 @@
+SELECT foo FROM foobarTable WHERE 1=1
