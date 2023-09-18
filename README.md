@@ -1,5 +1,7 @@
 # AST.Parser
 
+![workflow](https://github.com/lukeholt2/ast.parser/actions/workflows/ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/lukeholt2/ast.parser/branch/master/graph/badge.svg)](https://codecov.io/gh/lukeholt2/ast.parser/)
 ## Description
 
 AST.Parser is a collection of language parsers used to parse and represent source code in a generic hierarchical structure.
